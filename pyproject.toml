@@ -1,0 +1,68 @@
+[project]
+name = "asu-ai-environment"
+version = "0.1.0"
+description = "Development template for neural networks course"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "matplotlib",
+    "scikit-learn",
+]
+
+[project.optional-dependencies]
+
+jupyter = [
+    "jupyterlab",
+    "ipykernel",
+    "ipywidgets",
+    "nbformat",
+]
+
+additional = [    
+    "tqdm",        # progress bars for model training
+    "pyyaml",      # YAML configs
+    "joblib",      # model saving and caching
+]
+
+nlp = [
+    "transformers",
+    "datasets",
+    "accelerate",
+    "sentencepiece",
+]
+
+torch = [
+    "torch",
+    "torchvision",
+    "torchaudio",
+]
+
+tensorflow = ["tensorflow"]
+
+cv = [
+    "opencv-python",
+    "Pillow",
+    "albumentations",
+]
+
+dev = [
+    "ruff",
+    "mypy",
+]
+
+testing = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-codspeed",
+    "pytest-benchmark",
+]
+
+profiling = [
+    "scalene",
+    "snakeviz",
+]
