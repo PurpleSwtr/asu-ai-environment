@@ -8,6 +8,7 @@ a working environment quickly without fiddling with configuration.
 
 ## Contents
 
+- [Cloning and quick start](#cloning-and-quick-start)
 - [Requirements](#requirements)
 - [Project structure](#project-structure)
 - [Installation](#installation)
@@ -20,6 +21,29 @@ a working environment quickly without fiddling with configuration.
   - [Core (base, always installed)](#core-base-always-installed)
   - [Optional groups](#optional-groups)
 - [Running](#running)
+
+## Cloning and quick start
+
+```bash
+git clone https://github.com/PurpleSwtr/asu-ai-environment.git
+cd asu-ai-environment
+uv sync --extra jupyter --extra additional
+```
+
+The first two commands clone the repository and change into it. `uv sync`
+creates the virtual environment `.venv`, installs all dependencies and the
+project itself in editable mode. Dependency versions are reproducible from
+`uv.lock`, so everyone gets the same environment.
+
+Activate the environment afterwards:
+
+```bash
+source .venv/bin/activate        # bash / macOS / Linux
+.venv\Scripts\activate           # Windows (cmd or PowerShell)
+```
+
+If uv is not installed - install it, or use the classic pip path (see
+[Installation](#installation)).
 
 ## Requirements
 
