@@ -11,7 +11,6 @@ def main():
         python main.py labs/lab1/main.py
         jupyter notebook notebooks/demo.ipynb
     """
-    ...
 
 
 if __name__ == "__main__":
