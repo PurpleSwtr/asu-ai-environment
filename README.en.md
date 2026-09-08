@@ -9,7 +9,7 @@ a working environment quickly without fiddling with configuration.
 ## Contents
 
 - [Requirements](#requirements)
-- [Cloning and quick start (uv)](<#cloning-and-quick-start-(uv)>)
+- [Cloning and quick start (uv)](#cloning-and-quick-start-uv)
 - [Project structure](#project-structure)
 - [Installation](#installation)
   - [Option 1: uv (recommended)](#option-1-uv-recommended)
