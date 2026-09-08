@@ -8,8 +8,8 @@ a working environment quickly without fiddling with configuration.
 
 ## Contents
 
-- [Cloning and quick start](#cloning-and-quick-start)
 - [Requirements](#requirements)
+- [Cloning and quick start (uv)](<#cloning-and-quick-start-(uv)>)
 - [Project structure](#project-structure)
 - [Installation](#installation)
   - [Option 1: uv (recommended)](#option-1-uv-recommended)
@@ -22,7 +22,12 @@ a working environment quickly without fiddling with configuration.
   - [Optional groups](#optional-groups)
 - [Running](#running)
 
-## Cloning and quick start
+## Requirements
+
+- Python 3.11 or 3.12 (the required version is pinned in `.python-version`)
+- Environment manager: [uv](https://docs.astral.sh/uv/) or pip + `venv`
+
+## Cloning and quick start (uv)
 
 ```bash
 git clone https://github.com/PurpleSwtr/asu-ai-environment.git
@@ -44,11 +49,6 @@ source .venv/bin/activate        # bash / macOS / Linux
 
 If uv is not installed - install it, or use the classic pip path (see
 [Installation](#installation)).
-
-## Requirements
-
-- Python 3.11 or 3.12 (the required version is pinned in `.python-version`)
-- Environment manager: [uv](https://docs.astral.sh/uv/) or pip + `venv`
 
 ## Project structure
 
