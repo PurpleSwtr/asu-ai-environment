@@ -1,4 +1,4 @@
-# asu-ai-environment
+<img width="1252" height="640" alt="Image" src="https://github.com/user-attachments/assets/f2a14414-6d87-47d5-8c3e-0f95e212b753" />
 
 [Русский](README.md)
 
