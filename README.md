@@ -42,7 +42,7 @@
 ```bash
 git clone https://github.com/PurpleSwtr/asu-ai-environment.git
 cd asu-ai-environment
-uv sync --extra jupyter --extra additional
+uv sync
 ```
 
 Команда `uv sync` создаст виртуальное окружение `.venv`, установит все
@@ -120,17 +120,17 @@ uv.lock              зафиксированные версии зависим�
 
 ### Опциональные группы
 
-| Группа       | Установка                            | Состав                                                          |
-| ------------ | ------------------------------------ | --------------------------------------------------------------- |
-| `jupyter`    | `uv sync --extra jupyter`            | jupyterlab, ipykernel, ipywidgets, nbformat                     |
-| `additional` | `uv sync --extra additional`         | tqdm, pyyaml, joblib                                            |
-| `nlp`        | `uv sync --extra nlp`                | transformers, datasets, accelerate, sentencepiece               |
-| `torch`      | `uv sync --extra torch`              | torch, torchvision, torchaudio                                  |
-| `tensorflow` | `uv sync --extra tensorflow`         | TensorFlow                                                      |
-| `cv`         | `uv sync --extra cv`                 | opencv-python, Pillow, albumentations                           |
-| `dev`        | `uv sync --extra dev`                | ruff, mypy                                                      |
-| `testing`    | `uv sync --extra testing`            | pytest, pytest-cov, pytest-mock, pytest-codspeed, pytest-benchmark |
-| `profiling`  | `uv sync --extra profiling`          | scalene, snakeviz                                               |
+| Группа       | Установка                    | Состав                                                             |
+| ------------ | ---------------------------- | ------------------------------------------------------------------ |
+| `jupyter`    | `uv sync --extra jupyter`    | jupyterlab, ipykernel, ipywidgets, nbformat                        |
+| `additional` | `uv sync --extra additional` | tqdm, pyyaml, joblib                                               |
+| `nlp`        | `uv sync --extra nlp`        | transformers, datasets, accelerate, sentencepiece                  |
+| `torch`      | `uv sync --extra torch`      | torch, torchvision, torchaudio                                     |
+| `tensorflow` | `uv sync --extra tensorflow` | TensorFlow                                                         |
+| `cv`         | `uv sync --extra cv`         | opencv-python, Pillow, albumentations                              |
+| `dev`        | `uv sync --extra dev`        | ruff, mypy                                                         |
+| `testing`    | `uv sync --extra testing`    | pytest, pytest-cov, pytest-mock, pytest-codspeed, pytest-benchmark |
+| `profiling`  | `uv sync --extra profiling`  | scalene, snakeviz                                                  |
 
 Несколько групп одновременно:
 

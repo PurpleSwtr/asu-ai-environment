@@ -41,7 +41,7 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/PurpleSwtr/asu-ai-environment.git
 cd asu-ai-environment
-uv sync --extra jupyter --extra additional
+uv sync
 ```
 
 `uv sync` creates the virtual environment `.venv`, installs all dependencies
@@ -119,17 +119,17 @@ Always installed:
 
 ### Optional groups
 
-| Group        | Install                              | Contents                                                          |
-| ------------ | ------------------------------------ | ----------------------------------------------------------------- |
-| `jupyter`    | `uv sync --extra jupyter`            | jupyterlab, ipykernel, ipywidgets, nbformat                       |
-| `additional` | `uv sync --extra additional`         | tqdm, pyyaml, joblib                                              |
-| `nlp`        | `uv sync --extra nlp`                | transformers, datasets, accelerate, sentencepiece                 |
-| `torch`      | `uv sync --extra torch`              | torch, torchvision, torchaudio                                    |
-| `tensorflow` | `uv sync --extra tensorflow`         | TensorFlow                                                        |
-| `cv`         | `uv sync --extra cv`                 | opencv-python, Pillow, albumentations                             |
-| `dev`        | `uv sync --extra dev`                | ruff, mypy                                                        |
-| `testing`    | `uv sync --extra testing`            | pytest, pytest-cov, pytest-mock, pytest-codspeed, pytest-benchmark |
-| `profiling`  | `uv sync --extra profiling`          | scalene, snakeviz                                                 |
+| Group        | Install                      | Contents                                                           |
+| ------------ | ---------------------------- | ------------------------------------------------------------------ |
+| `jupyter`    | `uv sync --extra jupyter`    | jupyterlab, ipykernel, ipywidgets, nbformat                        |
+| `additional` | `uv sync --extra additional` | tqdm, pyyaml, joblib                                               |
+| `nlp`        | `uv sync --extra nlp`        | transformers, datasets, accelerate, sentencepiece                  |
+| `torch`      | `uv sync --extra torch`      | torch, torchvision, torchaudio                                     |
+| `tensorflow` | `uv sync --extra tensorflow` | TensorFlow                                                         |
+| `cv`         | `uv sync --extra cv`         | opencv-python, Pillow, albumentations                              |
+| `dev`        | `uv sync --extra dev`        | ruff, mypy                                                         |
+| `testing`    | `uv sync --extra testing`    | pytest, pytest-cov, pytest-mock, pytest-codspeed, pytest-benchmark |
+| `profiling`  | `uv sync --extra profiling`  | scalene, snakeviz                                                  |
 
 Several groups at once:
 
