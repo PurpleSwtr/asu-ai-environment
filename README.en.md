@@ -8,26 +8,35 @@ a working environment quickly without fiddling with configuration.
 
 ## Contents
 
+- [Contents](#contents)
 - [Requirements](#requirements)
-- [Cloning and quick start (uv)](#cloning-and-quick-start-uv)
-- [Project structure](#project-structure)
-- [Installation](#installation)
-  - [Option 1: uv (recommended)](#option-1-uv-recommended)
-  - [Option 2: pip](#option-2-pip)
+- [Quick start](#quick-start)
+  - [If you don't have uv - installing with pip](#if-you-dont-have-uv---installing-with-pip)
     - [bash / macOS / Linux](#bash--macos--linux)
     - [Windows (cmd or PowerShell)](#windows-cmd-or-powershell)
-- [Activating the virtual environment](#activating-the-virtual-environment)
+- [Project structure](#project-structure)
 - [Dependencies](#dependencies)
-  - [Core (base, always installed)](#core-base-always-installed)
+  - [Core](#core)
   - [Optional groups](#optional-groups)
-- [Running](#running)
+- [What's next](#whats-next)
 
 ## Requirements
 
-- Python 3.11 or 3.12 (the required version is pinned in `.python-version`)
-- Environment manager: [uv](https://docs.astral.sh/uv/) or pip + `venv`
+- **Python 3.12** - the version is pinned in `.python-version`.
+  Install it from [python.org](https://www.python.org/downloads/) and check:
 
-## Cloning and quick start (uv)
+  ```bash
+  py -3.12 --version
+  ```
+
+- **[uv](https://docs.astral.sh/uv/)** - environment manager. Installing it is
+  optional but recommended: uv is noticeably faster than pip and manages
+  environments and Python versions on its own. Install it following the
+  [guide](https://docs.astral.sh/uv/#installation).
+
+## Quick start
+
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/PurpleSwtr/asu-ai-environment.git
@@ -35,56 +44,28 @@ cd asu-ai-environment
 uv sync --extra jupyter --extra additional
 ```
 
-The first two commands clone the repository and change into it. `uv sync`
-creates the virtual environment `.venv`, installs all dependencies and the
-project itself in editable mode. Dependency versions are reproducible from
-`uv.lock`, so everyone gets the same environment.
+`uv sync` creates the virtual environment `.venv`, installs all dependencies
+and the project itself in editable mode. Versions are pinned in `uv.lock`,
+so everyone gets the same environment.
 
-Activate the environment afterwards:
+Activate the environment:
 
-```bash
-source .venv/bin/activate        # bash / macOS / Linux
-.venv\Scripts\activate           # Windows (cmd or PowerShell)
-```
-
-If uv is not installed - install it, or use the classic pip path (see
-[Installation](#installation)).
-
-## Project structure
-
-```
-main.py              CLI entry point
-labs/                lab works
-notebooks/           Jupyter notebooks
-src/                 the project's environment package
-    data/            data loading and preparation
-    models/          models
-    utils/           helper functions
-pyproject.toml       project description and dependencies
-```
-
-## Installation
-
-### Option 1: uv (recommended)
-
-Install uv: https://docs.astral.sh/uv/
+**bash / macOS / Linux:**
 
 ```bash
-uv sync --extra jupyter --extra additional
+source .venv/bin/activate
 ```
 
-The command creates the virtual environment `.venv` on its own (using the
-Python version from `.python-version`), installs all dependencies and the
-project itself in editable mode.
+**Windows (cmd or PowerShell):**
 
-Activate the environment afterwards:
-
-```bash
-source .venv/bin/activate        # bash / macOS / Linux
-.venv\Scripts\activate           # Windows (cmd or PowerShell)
+```powershell
+.venv\Scripts\activate
 ```
 
-### Option 2: pip
+### If you don't have uv - installing with pip
+
+<details>
+<summary>Expand</summary>
 
 #### bash / macOS / Linux
 
@@ -105,20 +86,28 @@ pip install -e ".[jupyter,additional]"
 The quotes around `".[jupyter,additional]"` are required: otherwise zsh/bash
 and PowerShell will not understand the square brackets.
 
-## Activating the virtual environment
+</details>
 
-| OS / shell              | Command                     |
-| ----------------------- | --------------------------- |
-| bash, zsh, macOS, Linux | `source .venv/bin/activate` |
-| Windows cmd             | `.venv\Scripts\activate`    |
-| Windows PowerShell      | `.venv\Scripts\activate`    |
+## Project structure
 
-After activation the prompt gets a `(.venv)` prefix. Leave the environment
-with the `deactivate` command.
+```
+main.py              CLI entry point
+labs/                lab works
+notebooks/           Jupyter notebooks
+src/                 the project package
+    data/            data loading and preparation
+    models/          models
+    utils/           helper functions
+pyproject.toml       project description and dependencies
+.python-version      pinned Python version
+uv.lock              pinned dependency versions
+```
 
 ## Dependencies
 
-### Core (base, always installed)
+### Core
+
+Always installed:
 
 | Package      | Purpose                             |
 | ------------ | ----------------------------------- |
@@ -130,33 +119,29 @@ with the `deactivate` command.
 
 ### Optional groups
 
-| Group        | Install         | Contents and purpose                                                           |
-| ------------ | --------------- | ------------------------------------------------------------------------------ |
-| `jupyter`    | `.[jupyter]`    | notebooks: jupyterlab, ipykernel, ipywidgets, nbformat                         |
-| `additional` | `.[additional]` | utilities: tqdm (progress bars), pyyaml (YAML configs), joblib (serialization) |
-| `nlp`        | `.[nlp]`        | text processing: transformers, datasets, accelerate, sentencepiece             |
-| `torch`      | `.[torch]`      | PyTorch: torch, torchvision, torchaudio                                        |
-| `tensorflow` | `.[tensorflow]` | TensorFlow                                                                     |
-| `cv`         | `.[cv]`         | computer vision: opencv-python, Pillow, albumentations                         |
-| `dev`        | `.[dev]`        | code quality: ruff (linter), mypy (type checking)                              |
-| `testing`    | `.[testing]`    | testing: pytest, pytest-cov, pytest-mock, pytest-benchmark, pytest-codspeed    |
-| `profiling`  | `.[profiling]`  | profiling: scalene, snakeviz                                                   |
+| Group        | Install                              | Contents                                                          |
+| ------------ | ------------------------------------ | ----------------------------------------------------------------- |
+| `jupyter`    | `uv sync --extra jupyter`            | jupyterlab, ipykernel, ipywidgets, nbformat                       |
+| `additional` | `uv sync --extra additional`         | tqdm, pyyaml, joblib                                              |
+| `nlp`        | `uv sync --extra nlp`                | transformers, datasets, accelerate, sentencepiece                 |
+| `torch`      | `uv sync --extra torch`              | torch, torchvision, torchaudio                                    |
+| `tensorflow` | `uv sync --extra tensorflow`         | TensorFlow                                                        |
+| `cv`         | `uv sync --extra cv`                 | opencv-python, Pillow, albumentations                             |
+| `dev`        | `uv sync --extra dev`                | ruff, mypy                                                        |
+| `testing`    | `uv sync --extra testing`            | pytest, pytest-cov, pytest-mock, pytest-codspeed, pytest-benchmark |
+| `profiling`  | `uv sync --extra profiling`          | scalene, snakeviz                                                 |
 
-Installing several groups with pip:
-
-```bash
-pip install -e ".[jupyter,additional,torch,dev]"
-```
-
-The same with uv:
+Several groups at once:
 
 ```bash
-uv sync --extra jupyter --extra additional
+uv sync --extra jupyter --extra additional --extra torch
 ```
 
-## Running
+## What's next
 
-```bash
-python main.py                 # CLI entry point
-jupyter lab notebooks/         # work in notebooks (requires the jupyter extra)
-```
+1. Open `labs/` - assignments will live here.
+2. To work in notebooks:
+
+   ```bash
+   jupyter lab notebooks/
+   ```

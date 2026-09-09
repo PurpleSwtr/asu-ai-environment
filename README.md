@@ -8,26 +8,36 @@
 
 ## Оглавление
 
+- [Оглавление](#оглавление)
 - [Требования](#требования)
-- [Клонирование и быстрый старт (uv)](#клонирование-и-быстрый-старт-uv)
-- [Структура проекта](#структура-проекта)
-- [Установка](#установка)
-  - [Способ 1: uv (рекомендуется)](#способ-1-uv-рекомендуется)
-  - [Способ 2: pip](#способ-2-pip)
+- [Быстрый старт](#быстрый-старт)
+  - [Если вы выбрали медленный путь без uv - установка через pip](#если-вы-выбрали-медленный-путь-без-uv---установка-через-pip)
     - [bash / macOS / Linux](#bash--macos--linux)
     - [Windows (cmd или PowerShell)](#windows-cmd-или-powershell)
-- [Активация виртуального окружения](#активация-виртуального-окружения)
+- [Структура проекта](#структура-проекта)
 - [Зависимости](#зависимости)
-  - [Основные (базовые, устанавливаются всегда)](#основные-базовые-устанавливаются-всегда)
+  - [Основные](#основные)
   - [Опциональные группы](#опциональные-группы)
-- [Запуск](#запуск)
+- [Что дальше](#что-дальше)
 
 ## Требования
 
-- Python 3.11 или 3.12 (требуемая версия зафиксирована в `.python-version`)
-- Менеджер окружений: [uv](https://docs.astral.sh/uv/) либо pip + `venv`
+- **Python 3.12** - версия зафиксирована в файле `.python-version`.
+  Установите с [python.org](https://www.python.org/downloads/) и проверьте:
 
-## Клонирование и быстрый старт (uv)
+  ```bash
+  py -3.12 --version  # Windows
+  python3 --version   # bash / macOS / Linux
+  ```
+
+- **[uv](https://docs.astral.sh/uv/)** - менеджер окружений. Его установка
+  необязательна, но рекомендуется: uv заметно быстрее pip и сам управляет
+  окружениями и версиями Python. Установите по
+  [инструкции](https://docs.astral.sh/uv/#installation).
+
+## Быстрый старт
+
+Склонируйте репозиторий и установите зависимости:
 
 ```bash
 git clone https://github.com/PurpleSwtr/asu-ai-environment.git
@@ -35,55 +45,28 @@ cd asu-ai-environment
 uv sync --extra jupyter --extra additional
 ```
 
-Первые две команды клонируют репозиторий и переходят в него. `uv sync`
-создаёт виртуальное окружение `.venv`, устанавливает все зависимости
-и сам проект в editable-режиме. Версии зависимостей воспроизводятся
-из `uv.lock`, поэтому окружение у всех будет одинаковым.
+Команда `uv sync` создаст виртуальное окружение `.venv`, установит все
+зависимости и сам проект. Версии фиксируются из
+`uv.lock`, поэтому у всех будет одинаковое окружение.
 
-После установки активируйте окружение:
+Активируйте окружение:
 
-```bash
-source .venv/bin/activate        # bash / macOS / Linux
-.venv\Scripts\activate           # Windows (cmd или PowerShell)
-```
-
-Если uv не установлен - поставьте его либо используйте классический способ
-через pip (см. раздел [Установка](#установка)).
-
-## Структура проекта
-
-```
-main.py              CLI-точка входа
-labs/                лабораторные работы
-notebooks/           Jupyter-ноутбуки
-src/                 пакет-окружение проекта
-    data/            загрузка и подготовка данных
-    models/          модели
-    utils/           вспомогательные функции
-pyproject.toml       описание проекта и зависимостей
-```
-
-## Установка
-
-### Способ 1: uv (рекомендуется)
-
-Установка uv: https://docs.astral.sh/uv/
+**bash / macOS / Linux:**
 
 ```bash
-uv sync --extra jupyter --extra additional
+source .venv/bin/activate
 ```
 
-Команда сама создаст виртуальное окружение `.venv` (с версией Python из
-`.python-version`), установит все зависимости и сам проект в editable-режиме.
+**Windows (cmd или PowerShell):**
 
-Активация окружения после установки:
-
-```bash
-source .venv/bin/activate        # bash / macOS / Linux
-.venv\Scripts\activate           # Windows (cmd или PowerShell)
+```powershell
+.venv\Scripts\activate
 ```
 
-### Способ 2: pip
+### Если вы выбрали медленный путь без uv - установка через pip
+
+<details>
+<summary>Развернуть</summary>
 
 #### bash / macOS / Linux
 
@@ -101,23 +84,31 @@ py -3.12 -m venv .venv
 pip install -e ".[jupyter,additional]"
 ```
 
-Кавычки вокруг `".[jupyter,additional]"` обязательны: в противном случае
-zsh/bash и PowerShell не поймут квадратные скобки.
+Кавычки вокруг `".[jupyter,additional]"` обязательны: иначе zsh/bash
+и PowerShell не поймут квадратные скобки.
 
-## Активация виртуального окружения
+</details>
 
-| ОС / оболочка           | Команда                     |
-| ----------------------- | --------------------------- |
-| bash, zsh, macOS, Linux | `source .venv/bin/activate` |
-| Windows cmd             | `.venv\Scripts\activate`    |
-| Windows PowerShell      | `.venv\Scripts\activate`    |
+## Структура проекта
 
-После активации в начале строки приглашения появится префикс `(.venv)`.
-Деактивация командой `deactivate`.
+```
+main.py              CLI-точка входа
+labs/                лабораторные работы
+notebooks/           Jupyter-ноутбуки
+src/                 пакет проекта
+    data/            загрузка и подготовка данных
+    models/          модели
+    utils/           вспомогательные функции
+pyproject.toml       описание проекта и зависимостей
+.python-version      фиксированная версия Python
+uv.lock              зафиксированные версии зависимостей
+```
 
 ## Зависимости
 
-### Основные (базовые, устанавливаются всегда)
+### Основные
+
+Устанавливаются всегда:
 
 | Пакет        | Назначение                                |
 | ------------ | ----------------------------------------- |
@@ -129,33 +120,30 @@ zsh/bash и PowerShell не поймут квадратные скобки.
 
 ### Опциональные группы
 
-| Группа       | Установка       | Состав и назначение                                                              |
-| ------------ | --------------- | -------------------------------------------------------------------------------- |
-| `jupyter`    | `.[jupyter]`    | блокноты: jupyterlab, ipykernel, ipywidgets, nbformat                            |
-| `additional` | `.[additional]` | утилиты: tqdm (прогресс-бары), pyyaml (YAML-конфиги), joblib (сериализация)      |
-| `nlp`        | `.[nlp]`        | обработка текста: transformers, datasets, accelerate, sentencepiece              |
-| `torch`      | `.[torch]`      | PyTorch: torch, torchvision, torchaudio                                          |
-| `tensorflow` | `.[tensorflow]` | TensorFlow                                                                       |
-| `cv`         | `.[cv]`         | компьютерное зрение: opencv-python, Pillow, albumentations                       |
-| `dev`        | `.[dev]`        | качество кода: ruff (линтер), mypy (проверка типов)                              |
-| `testing`    | `.[testing]`    | тестирование: pytest, pytest-cov, pytest-mock, pytest-benchmark, pytest-codspeed |
-| `profiling`  | `.[profiling]`  | профилирование: scalene, snakeviz                                                |
+| Группа       | Установка                            | Состав                                                          |
+| ------------ | ------------------------------------ | --------------------------------------------------------------- |
+| `jupyter`    | `uv sync --extra jupyter`            | jupyterlab, ipykernel, ipywidgets, nbformat                     |
+| `additional` | `uv sync --extra additional`         | tqdm, pyyaml, joblib                                            |
+| `nlp`        | `uv sync --extra nlp`                | transformers, datasets, accelerate, sentencepiece               |
+| `torch`      | `uv sync --extra torch`              | torch, torchvision, torchaudio                                  |
+| `tensorflow` | `uv sync --extra tensorflow`         | TensorFlow                                                      |
+| `cv`         | `uv sync --extra cv`                 | opencv-python, Pillow, albumentations                           |
+| `dev`        | `uv sync --extra dev`                | ruff, mypy                                                      |
+| `testing`    | `uv sync --extra testing`            | pytest, pytest-cov, pytest-mock, pytest-codspeed, pytest-benchmark |
+| `profiling`  | `uv sync --extra profiling`          | scalene, snakeviz                                               |
 
-Пример установки нескольких групп с pip:
-
-```bash
-pip install -e ".[jupyter,additional,torch,dev]"
-```
-
-То же через uv:
+Несколько групп одновременно:
 
 ```bash
-uv sync --extra jupyter --extra additional
+uv sync --extra jupyter --extra additional --extra torch
 ```
 
-## Запуск
+## Что дальше
 
-```bash
-python main.py                 # CLI-точка входа
-jupyter lab notebooks/         # работа в блокнотах (требует extra jupyter)
-```
+1. Откройте `labs/` - здесь будут ваши задания.
+
+2. Для работы в блокнотах:
+
+   ```bash
+   jupyter lab notebooks/
+   ```
