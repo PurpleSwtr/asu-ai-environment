@@ -1,7 +1,7 @@
 class Config:
     def __init__(self) -> None:
         self._github_link: str = (
-            "https://github.com/PurpleSwtr/asu-ai-environment/tree/dev/"
+            "https://github.com/PurpleSwtr/asu-ai-environment/blob/dev/"
         )
 
     def get_github_link(self):
