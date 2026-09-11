@@ -365,6 +365,9 @@ torch = [
     { name = "torchaudio" },
     { name = "torchvision" },
 ]
+user = [
+    { name = "rich" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -388,6 +391,7 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'testing'" },
     { name = "pytest-mock", marker = "extra == 'testing'" },
     { name = "pyyaml", marker = "extra == 'additional'" },
+    { name = "rich", marker = "extra == 'user'" },
     { name = "ruff", marker = "extra == 'dev'" },
     { name = "scalene", marker = "extra == 'profiling'" },
     { name = "scikit-learn" },
@@ -401,7 +405,7 @@ requires-dist = [
     { name = "tqdm", marker = "extra == 'additional'" },
     { name = "transformers", marker = "extra == 'nlp'" },
 ]
-provides-extras = ["jupyter", "additional", "nlp", "torch", "tensorflow", "cv", "dev", "testing", "profiling"]
+provides-extras = ["user", "jupyter", "additional", "nlp", "torch", "tensorflow", "cv", "dev", "testing", "profiling"]
 
 [[package]]
 name = "async-lru"

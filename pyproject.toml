@@ -15,6 +15,10 @@ dependencies = [
 
 [project.optional-dependencies]
 
+user = [
+    "rich"
+]
+
 jupyter = [
     "jupyterlab",
     "ipykernel",
